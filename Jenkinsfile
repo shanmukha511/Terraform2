@@ -14,9 +14,17 @@ stages {
                 checkout scm
             }
         }
+    
+    stage("vars copy"
+          {
+              steps
+              {
+                  sh "cp /var/tmp/vars.tf /var/jenkins_home/workspace/new_test/"
+              }
+          }
         stage('terraform init') {
             steps {
-                sh 'terraform init '
+                sh 'terraform init -input=false '
             }
         }
         stage('terraform plan') {
